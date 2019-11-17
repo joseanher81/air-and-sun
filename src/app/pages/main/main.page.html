@@ -1,18 +1,18 @@
 <ion-content>
   <ion-grid class="ion-no-padding">
 
-    <ion-row id="air-info">
-      <ion-col class="face good-face"></ion-col>
+    <ion-row id="air-info" [ngClass]='airSectionColor'>
+      <ion-col class="face" [ngClass]='airSectionFace'></ion-col>
       <ion-col class="measure">
-        <div class="number">4</div>
+        <div class="number">{{airValue}}</div>
         <img src="../../../assets/img/air.svg" class="ambient-icon">
       </ion-col>
     </ion-row>
 
-    <ion-row id="sun-info">
-      <ion-col class="face regular-face"></ion-col>
+    <ion-row id="sun-info" [ngClass]='sunSectionColor'>
+      <ion-col class="face" [ngClass]='sunSectionFace'></ion-col>
       <ion-col class="measure">
-        <div class="number">7</div>
+        <div class="number">{{sunValue}}</div>
         <img src="../../../assets/img/sun.svg" class="ambient-icon">
       </ion-col>
     </ion-row>
