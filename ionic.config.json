@@ -1,5 +1,7 @@
 {
   "name": "airAndSun",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
