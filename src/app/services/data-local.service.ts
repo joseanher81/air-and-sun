@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { Alerta } from '../interfaces/interfacesAlert';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataLocalService {
+
+  alerts: Alerta[] = [];
+
+  constructor(private storage: Storage) { }
+
+  saveAlert(alert: Alerta){
+
+    // Avoids duplicating alerts
+    let exists = false;
+    this.alerts.forEach(function(bbddAlert) {
+      if(bbddAlert.localizacion == alert.localizacion && bbddAlert.indice == alert.indice && bbddAlert.variable == alert.variable){
+        exists = true;
+      }
+    });
+
+    // If the alerts is not on DDBB yet it is added
+    if(!exists) {
+      this.alerts.push(alert);
+      this.storage.set('alerts', this.alerts);
+    }
+
+  }
+}

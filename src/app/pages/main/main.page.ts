@@ -39,7 +39,7 @@ export class MainPage implements OnInit {
       
       this.airValue = resp.data.current.pollution.aqius;
       console.log(`Consulted airService with gps for lat ${this.latitud} and long ${this.longitud} with result ${this.airValue}`);
-      this.changeBackground();
+      this.changeBackground(); // updates background
 
     });
 
@@ -58,7 +58,7 @@ export class MainPage implements OnInit {
       
       this.sunValue = resp.result.uv;
       console.log(`Consulted sunService for lat ${this.latitud} and long ${this.longitud} with result ${this.sunValue}`);
-      this.changeBackground();
+      this.changeBackground(); // updates background
 
     });
   }

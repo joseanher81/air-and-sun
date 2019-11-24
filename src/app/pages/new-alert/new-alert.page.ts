@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Alerta } from 'src/app/interfaces/interfacesAlert';
+import { DataLocalService } from 'src/app/services/data-local.service';
+
 
 @Component({
   selector: 'app-new-alert',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewAlertPage implements OnInit {
 
-  constructor() { }
+  alerta: Alerta = {localizacion: '', indice: null, variable: 'aire'};
+
+  constructor(private dataLocal: DataLocalService) { }
 
   ngOnInit() {
   }
 
+  onSaveAlert() {
+    let newAlert = {localizacion: this.alerta.localizacion, indice: this.alerta.indice, variable: this.alerta.variable}
+    this.dataLocal.saveAlert(newAlert);
+  }
+
+  onCancel() {
+    this.alerta.localizacion = '';
+    this.alerta.indice = null;
+  }
 }
