@@ -28,4 +28,17 @@ export class DataLocalService {
     }
 
   }
+
+  async loadAlerts() {
+
+    const alerts = await this.storage.get('alerts');
+    this.alerts = alerts || [];
+    return this.alerts;
+  }
+
+  deleteAlert(i) {
+    console.log('deleting alert ', i);
+    this.alerts.splice(i, 1);
+    this.storage.set('alerts', this.alerts);
+  }
 }
