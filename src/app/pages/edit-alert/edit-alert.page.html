@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Editar alerta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <form #formulario="ngForm" (ngSubmit)="onSaveAlert()">
+
+    <ion-list>
+
+      <ion-item>
+        <ion-label position="floating">Localización</ion-label>
+        <ion-input type="text" name="localizacion" [(ngModel)]="alerta.localizacion" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Indice</ion-label>
+        <ion-input type="text" name="indice" [(ngModel)]="alerta.indice" required></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-list id="radios">
+        <ion-radio-group name="variable" [(ngModel)]="alerta.variable">
+            <ion-list-header>
+              Variable ambiental
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>Aire</ion-label>
+              <ion-radio slot="start" color="success" value="Aire" checked></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>UV</ion-label>
+              <ion-radio slot="start" color="success" value="UV"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+
+    <div id="buttons">
+        <ion-button id="btnGuardar" color="primary" type="submit" [disabled]="formulario.invalid">Guardar</ion-button>
+        <ion-button id="btnCancelar" color="danger" (click)="onCancel()">Cancelar</ion-button>
+    </div>
+
+  </form>
+</ion-content>

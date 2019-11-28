@@ -1,0 +1,20 @@
+ion-content{
+  --padding-end: 5%;
+  --padding-start: 5%;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+ion-button {
+  margin: 20px;
+  width: 30%;
+  --color: red;
+}
+
+#radios {
+  margin-top: 40px;
+}

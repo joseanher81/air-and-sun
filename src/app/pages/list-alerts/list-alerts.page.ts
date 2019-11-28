@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Alerta } from 'src/app/interfaces/interfacesAlert';
 import { DataLocalService } from 'src/app/services/data-local.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list-alerts',
@@ -12,7 +13,7 @@ export class ListAlertsPage implements OnInit {
   alerts: Alerta[] = [];
 
 
-  constructor(private dataLocal: DataLocalService) { }
+  constructor(private dataLocal: DataLocalService, private navController: NavController) { }
 
   ngOnInit() {
   }
@@ -21,8 +22,9 @@ export class ListAlertsPage implements OnInit {
     this.alerts = await this.dataLocal.loadAlerts();
   }
 
-  edit(alert) {
-    console.log('editing', alert)
+  edit(alert: Alerta, index) {
+    // Go to add/edit alert page
+    this.navController.navigateRoot('/edit-alert', { queryParams: { i: index, loc: alert.localizacion, ind: alert.indice, var: alert.variable, edicion: true, animated: true }});
   }
 
   delete(index) {

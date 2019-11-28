@@ -41,4 +41,10 @@ export class DataLocalService {
     this.alerts.splice(i, 1);
     this.storage.set('alerts', this.alerts);
   }
+
+  updateAlert(alert: Alerta, i: number){
+    console.log("updating alert", alert, i)
+    this.alerts[i] = alert;
+    this.storage.set('alerts', this.alerts);
+  }
 }

@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'new-alert', loadChildren: './pages/new-alert/new-alert.module#NewAlertPageModule' },
   { path: 'list-alerts', loadChildren: './pages/list-alerts/list-alerts.module#ListAlertsPageModule' },
   { path: 'tabs', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
+  { path: 'edit-alert', loadChildren: './pages/edit-alert/edit-alert.module#EditAlertPageModule' },
 ];
 
 @NgModule({
