@@ -4,7 +4,7 @@
     <ion-row id="air-info" [ngClass]='airSectionColor'>
       <ion-col class="face" [ngClass]='airSectionFace'></ion-col>
       <ion-col class="measure">
-        <div class="number">{{airValue}}</div>
+        <div class="number">{{airValue | number:'1.0-1'}}</div>
         <img src="../../../assets/img/air.svg" class="ambient-icon">
       </ion-col>
     </ion-row>
@@ -12,7 +12,7 @@
     <ion-row id="sun-info" [ngClass]='sunSectionColor'>
       <ion-col class="face" [ngClass]='sunSectionFace'></ion-col>
       <ion-col class="measure">
-        <div class="number">{{sunValue}}</div>
+        <div class="number">{{sunValue | number:'1.0-1'}}</div>
         <img src="../../../assets/img/sun.svg" class="ambient-icon">
       </ion-col>
     </ion-row>
