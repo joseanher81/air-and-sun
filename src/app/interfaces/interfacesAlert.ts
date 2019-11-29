@@ -1,5 +1,7 @@
 export interface Alerta {
   localizacion: string,
   indice: number,
-  variable: string
+  variable: string,
+  lat: number,
+  lon: number
 }
