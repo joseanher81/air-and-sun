@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Alerta } from 'src/app/interfaces/interfacesAlert';
 import { DataLocalService } from 'src/app/services/data-local.service';
+import { UtilsService } from 'src/app/services/utils.service'
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -13,7 +14,7 @@ export class ListAlertsPage implements OnInit {
   alerts: Alerta[] = [];
 
 
-  constructor(private dataLocal: DataLocalService, private navController: NavController) { }
+  constructor(private dataLocal: DataLocalService, private navController: NavController, private utilsService:UtilsService) { }
 
   ngOnInit() {
   }
@@ -31,4 +32,28 @@ export class ListAlertsPage implements OnInit {
     this.dataLocal.deleteAlert(index);
   } 
 
+  // Checks if an alert should be fired for the current location
+  checkAlerts(maxDistance = 10, currentLat, currentLon, currentAirIndex, currentUvIndex) {
+    
+    this.alerts.forEach((alert) => {
+        // Check if the user is in the radiuos of an alert
+       let distance = this.utilsService.ditanceFromTwoPoints(currentLat, currentLon, alert.lat, alert.lon);
+        
+       if(parseFloat(distance) < maxDistance) { // The user is inside the radius of an alert
+
+        if(alert.variable == "Aire" && currentAirIndex > alert.indice) {
+          this.sendNotification();
+        }
+
+        if(alert.variable == "UV" && currentUvIndex > alert.indice) {
+          this.sendNotification();
+        }
+       }
+    });
+  }
+
+  // Sends a notification to the user terminal
+  sendNotification() {
+    // TODO
+  }
 }
