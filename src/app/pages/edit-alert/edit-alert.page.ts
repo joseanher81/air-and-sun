@@ -11,7 +11,7 @@ import { NavController } from '@ionic/angular';
 })
 export class EditAlertPage implements OnInit {
 
-  alerta: Alerta = {localizacion: '', indice: null, variable: 'aire'};
+  alerta: Alerta = {localizacion: '', indice: null, variable: 'aire', lat: 0, lon: 0};
   i: number;
 
   constructor(private dataLocal: DataLocalService, private route: ActivatedRoute, private navCtrl: NavController) { }
@@ -24,7 +24,8 @@ export class EditAlertPage implements OnInit {
   }
 
   onSaveAlert() {
-    let newAlert = {localizacion: this.alerta.localizacion, indice: this.alerta.indice, variable: this.alerta.variable}
+    //TODO revisar lat y lon
+    let newAlert = {localizacion: this.alerta.localizacion, indice: this.alerta.indice, variable: this.alerta.variable, lat: 0, lon: 0}
     this.dataLocal.updateAlert(newAlert, this.i);
     this.navCtrl.back();
   }
