@@ -38,7 +38,7 @@ export class NewAlertPage implements OnInit {
       this.dataLocal.saveAlert(newAlert);
 
       // Reset values
-      //this.alerta = {localizacion: '', indice: null, variable: 'Aire', lat: 0, lon: 0};
+      this.alerta = {localizacion: '', indice: null, variable: 'Aire', lat: 0, lon: 0};
 
       // Go back  
       this.navCtrl.back();
