@@ -3,6 +3,7 @@ import { Alerta } from 'src/app/interfaces/interfacesAlert';
 import { DataLocalService } from 'src/app/services/data-local.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-alert',
@@ -14,7 +15,7 @@ export class EditAlertPage implements OnInit {
   alerta: Alerta = {localizacion: '', indice: null, variable: 'aire', lat: 0, lon: 0};
   i: number;
 
-  constructor(private dataLocal: DataLocalService, private route: ActivatedRoute, private navCtrl: NavController) { }
+  constructor(private dataLocal: DataLocalService, private route: ActivatedRoute, private navCtrl: NavController, private toastController: ToastController) { }
 
   ngOnInit() {
     this.i = Number(this.route.snapshot.queryParamMap.get('i'));
@@ -28,10 +29,19 @@ export class EditAlertPage implements OnInit {
     let newAlert = {localizacion: this.alerta.localizacion, indice: this.alerta.indice, variable: this.alerta.variable, lat: 0, lon: 0}
     this.dataLocal.updateAlert(newAlert, this.i);
     this.navCtrl.back();
+    this.presentToast("Alerta guardada");
   }
 
   onCancel() {
     this.navCtrl.back();
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000
+    });
+    toast.present();
   }
 
 }
