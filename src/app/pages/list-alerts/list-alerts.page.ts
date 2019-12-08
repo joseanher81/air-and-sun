@@ -3,6 +3,7 @@ import { Alerta } from 'src/app/interfaces/interfacesAlert';
 import { DataLocalService } from 'src/app/services/data-local.service';
 import { UtilsService } from 'src/app/services/utils.service'
 import { NavController } from '@ionic/angular';
+import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-list-alerts',
@@ -14,7 +15,7 @@ export class ListAlertsPage implements OnInit {
   alerts: Alerta[] = [];
 
 
-  constructor(private dataLocal: DataLocalService, private navController: NavController, private utilsService:UtilsService) { }
+  constructor(private dataLocal: DataLocalService, private navController: NavController, private utilsService:UtilsService, private localNotifications: LocalNotifications) { }
 
   ngOnInit() {
   }
@@ -42,18 +43,23 @@ export class ListAlertsPage implements OnInit {
        if(parseFloat(distance) < maxDistance) { // The user is inside the radius of an alert
 
         if(alert.variable == "Aire" && currentAirIndex > alert.indice) {
-          this.sendNotification();
+          this.sendNotification('AirSun', 'La contaminación atmosférica es superior a la alerta programada');
         }
 
         if(alert.variable == "UV" && currentUvIndex > alert.indice) {
-          this.sendNotification();
+          this.sendNotification('AirSun', 'La radiación ultravioleta es superior a la alerta programada');
         }
        }
     });
   }
 
   // Sends a notification to the user terminal
-  sendNotification() {
-    // TODO
+  sendNotification(titulo, texto) {
+    this.localNotifications.schedule({
+      title: titulo,
+      text: texto,
+      trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND },
+      foreground: true
+    });
   }
 }
