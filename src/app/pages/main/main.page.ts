@@ -16,8 +16,8 @@ export class MainPage implements OnInit {
   sunSectionColor: string;
   airSectionFace: string;
   sunSectionFace: string;
-  longitud: number = -3.70;
-  latitud: number = 40.42;
+  longitud: number;
+  latitud: number;
 
   constructor(private airService: AirService, private sunService: SunService, private geolocation: Geolocation) { }
 
@@ -26,10 +26,10 @@ export class MainPage implements OnInit {
     this.getLocation();
 
     // Call to air pollution web service
-    this.loadAirInfo();
+    //this.loadAirInfo();
 
     // Call to UV index web service
-    this.loadSunInfo();
+    //this.loadSunInfo();
     //this.changeBackground();
   }
 
@@ -94,6 +94,13 @@ export class MainPage implements OnInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitud = resp.coords.latitude;
       this.longitud = resp.coords.longitude;
+
+      // Call to air pollution web service
+      this.loadAirInfo();
+
+      // Call to UV index web service
+      this.loadSunInfo();
+
       console.log(`Latitud ${this.latitud} Longitud ${this.longitud}`);
      }).catch((error) => {
        console.log('Error getting location', error);
