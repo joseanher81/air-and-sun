@@ -24,13 +24,6 @@ export class MainPage implements OnInit {
   ngOnInit() {
     // Obtain device location
     this.getLocation();
-
-    // Call to air pollution web service
-    //this.loadAirInfo();
-
-    // Call to UV index web service
-    //this.loadSunInfo();
-    //this.changeBackground();
   }
 
   // Obtain air quality value from WS
@@ -42,14 +35,6 @@ export class MainPage implements OnInit {
       this.changeBackground(); // updates background
 
     });
-
-/*     this.airService.getNearestCityData().subscribe( resp => {
-      
-      this.airValue = resp.data.current.pollution.aqius;
-      console.log(`Consulted airService with ip for lat ${this.latitud} and long ${this.longitud} with result ${this.airValue}`);
-      this.changeBackground();
-
-    });  */
   }
 
   // Obtain UV index from WS

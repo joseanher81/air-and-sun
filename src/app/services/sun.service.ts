@@ -16,6 +16,5 @@ export class SunService {
     let headers = new HttpHeaders().set("x-access-token", SUNKEY);
 
     return this.http.get<ResponseUvIndex>(`https://api.openuv.io/api/v1/uv?lat=${lat}&lng=${lng}`, {headers});
-    //return this.http.get<ResponseUvIndex>(`https://api.openuv.io/api/v1/uv?lat=40.42&lng=-3.70`, {headers});
   }
 }

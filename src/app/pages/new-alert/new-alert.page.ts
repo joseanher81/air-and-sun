@@ -47,8 +47,6 @@ export class NewAlertPage implements OnInit {
   }
 
   onCancel() {
-    //this.alerta.localizacion = '';
-    //this.alerta.indice = null;
     this.navCtrl.back();
   }
 
