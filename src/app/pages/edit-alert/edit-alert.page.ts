@@ -27,7 +27,6 @@ export class EditAlertPage implements OnInit {
   }
 
   onSaveAlert() {
-    //TODO revisar lat y lon
     let newAlert = {localizacion: this.alerta.localizacion, indice: this.alerta.indice, variable: this.alerta.variable, lat: this.alerta.lat, lon: this.alerta.lon}
     this.dataLocal.updateAlert(newAlert, this.i);
     this.navCtrl.back();
