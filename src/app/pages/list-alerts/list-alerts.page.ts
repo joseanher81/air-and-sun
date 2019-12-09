@@ -26,7 +26,7 @@ export class ListAlertsPage implements OnInit {
 
   edit(alert: Alerta, index) {
     // Go to add/edit alert page
-    this.navController.navigateRoot('/edit-alert', { queryParams: { i: index, loc: alert.localizacion, ind: alert.indice, var: alert.variable, edicion: true, animated: true }});
+    this.navController.navigateRoot('/edit-alert', { queryParams: { i: index, loc: alert.localizacion, ind: alert.indice, var: alert.variable, lat: alert.lat, lon: alert.lon, edicion: true, animated: true }});
   }
 
   delete(index) {

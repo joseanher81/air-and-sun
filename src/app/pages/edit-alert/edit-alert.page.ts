@@ -22,11 +22,13 @@ export class EditAlertPage implements OnInit {
     this.alerta.localizacion = this.route.snapshot.queryParamMap.get('loc');
     this.alerta.indice = Number(this.route.snapshot.queryParamMap.get('ind'));
     this.alerta.variable = this.route.snapshot.queryParamMap.get('var');
+    this.alerta.lat = Number(this.route.snapshot.queryParamMap.get('lat'));
+    this.alerta.lon = Number(this.route.snapshot.queryParamMap.get('lon'));
   }
 
   onSaveAlert() {
     //TODO revisar lat y lon
-    let newAlert = {localizacion: this.alerta.localizacion, indice: this.alerta.indice, variable: this.alerta.variable, lat: 0, lon: 0}
+    let newAlert = {localizacion: this.alerta.localizacion, indice: this.alerta.indice, variable: this.alerta.variable, lat: this.alerta.lat, lon: this.alerta.lon}
     this.dataLocal.updateAlert(newAlert, this.i);
     this.navCtrl.back();
     this.presentToast("Alerta guardada");
