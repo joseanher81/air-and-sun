@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AirService } from 'src/app/services/air.service';
 import { SunService } from 'src/app/services/sun.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 @Component({
   selector: 'app-main',
@@ -19,11 +20,14 @@ export class MainPage implements OnInit {
   longitud: number;
   latitud: number;
 
-  constructor(private airService: AirService, private sunService: SunService, private geolocation: Geolocation) { }
+  constructor(private airService: AirService, private sunService: SunService, private geolocation: Geolocation, private alertsService: AlertsService) { }
 
   ngOnInit() {
     // Obtain device location
     this.getLocation();
+
+    // Init alerts service
+    this.alertsService.startBackgroundGeolocation();
   }
 
   // Obtain air quality value from WS

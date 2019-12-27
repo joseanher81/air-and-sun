@@ -17,6 +17,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
+import { BackgroundGeolocation } from "@ionic-native/background-geolocation/ngx";
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +31,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    BackgroundGeolocation,
     Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     LocalNotifications
