@@ -28,8 +28,7 @@ export class AlertsService {
 
   // Checks if an alert should be fired for the current location
   checkAlerts(maxDistance = 5, currentLat, currentLon, currentAirIndex, currentUvIndex) {
-    
-    
+
     this.alerts.forEach((alert) => {
         // Check if the user is in the radiuos of an alert
        let distance = this.utilsService.ditanceFromTwoPoints(currentLat, currentLon, alert.lat, alert.lon);
@@ -37,11 +36,11 @@ export class AlertsService {
        if(parseFloat(distance) < maxDistance) { // The user is inside the radius of an alert
 
         if(alert.variable == "Aire" && currentAirIndex > alert.indice) {
-          this.sendNotification('AirSun', 'La contaminación atmosférica en' + alert.localizacion + 'es superior a ' + alert.indice);
+          this.sendNotification('AirSun', `La contaminación atmosférica en ${alert.localizacion} es superior a ${alert.indice}`);
         }
 
         if(alert.variable == "UV" && currentUvIndex > alert.indice) {
-          this.sendNotification('AirSun', 'La radiación ultravioleta en' + alert.localizacion + 'es superior a ' + alert.indice);
+          this.sendNotification('AirSun', `La radiación ultravioleta en ${alert.localizacion} es superior a ${alert.indice}`);
         }
        }
     });
@@ -52,7 +51,7 @@ export class AlertsService {
     this.localNotifications.schedule({
       title: titulo,
       text: texto,
-      trigger: { in: 5, unit: ELocalNotificationTriggerUnit.SECOND },
+      trigger: { in: 1, unit: ELocalNotificationTriggerUnit.SECOND },
       foreground: true
     });
   }
@@ -62,7 +61,7 @@ export class AlertsService {
       desiredAccuracy: 10,
       stationaryRadius: 1,
       distanceFilter: 1,
-      interval: 10000,
+      interval: 600000,  // check every 10 minutes
       debug: true, //  enable this hear sounds for background-geolocation life-cycle.
       stopOnTerminate: false // enable this to clear background location settings when the app terminates
     };
@@ -73,8 +72,6 @@ export class AlertsService {
       this.backgroundGeolocation
         .on(BackgroundGeolocationEvents.location)
         .subscribe((location: BackgroundGeolocationResponse) => {
-          
-          this.sendNotification("TEST", "Hay " + this.alerts.length + " alertas"); // TESTING
 
           this.airService.getNearestCityDataGps(location.latitude, location.longitude).subscribe( resp => {
       
@@ -83,6 +80,7 @@ export class AlertsService {
               this.sunService.getUvIndex(location.latitude, location.longitude).subscribe( resp => {
                 
                 let sunValue = resp.result.uv;
+                // Check alerts on DDBB
                 this.checkAlerts(5, location.latitude, location.longitude, airValue, sunValue);
 
               });
