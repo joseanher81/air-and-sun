@@ -41,5 +41,7 @@ ionic serve
 ```
 
 **Importante,** si da error algún plugin de Cordova probar con:
-`ionic cordova prepare`
+```
+ionic cordova prepare
+```
 
