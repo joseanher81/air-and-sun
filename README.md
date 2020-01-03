@@ -25,3 +25,21 @@ En la pantalla de alertas encontraremos un listado con las alertas almacenadas e
 Si en algún momento el usuario se desplaza a una localización para la cual existe una alerta y se cumplen las condiciones medioambientales establecidas, se avisará al usuario mediante una notificación.
 
 ![Captura de pantalla 2020-01-03 21 25 30](https://user-images.githubusercontent.com/23436377/71747292-938d9b00-2e6f-11ea-865d-49aa814d3855.png)
+
+## Prerrequisitos para despliegue en un servidor local
+
+-	node.js
+-	ionic
+-	cordova
+
+## Instalación y despliegue en navegador
+
+Ejecutar en el terminal, sobre la raíz del proyecto:
+```
+npm install
+ionic serve
+```
+
+**Importante,** si da error algún plugin de Cordova probar con:
+`ionic cordova prepare`
+
