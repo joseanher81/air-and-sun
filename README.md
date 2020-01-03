@@ -1,5 +1,5 @@
 ## AirSun
-**AirSun** es una aplicación móvil que proporciona al usuario, de manera clara y sencilla, información sobre el **índice de contaminación atmosférica** y el **índice de radiación ultravioleta**. La aplicación utiliza el GPS del dispositivo y varios servicios REST para obtener información en tiempo real de estos valores medioambientales en la localización del usuario. Además, permite al usuario configurar alertas para recibir notificaciones cuando los índices sobrepasen el valor máximo determinado para una localización establecida.
+**AirSun** es una aplicación móvil desarrollada con **Ionic** y **Angular** que proporciona al usuario, de manera clara y sencilla, información sobre el **índice de contaminación atmosférica** y el **índice de radiación ultravioleta**. La aplicación utiliza el GPS del dispositivo y varios servicios REST para obtener información en tiempo real de estos valores medioambientales en la localización del usuario. Además, permite al usuario configurar alertas para recibir notificaciones cuando los índices sobrepasen el valor máximo determinado para una localización establecida.
 
 ## Pantallas
 ### Principal
